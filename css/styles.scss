@@ -1,0 +1,70 @@
+// PARTIALS can be used to hold snippets of code that I want to 'IMPORT' into another sass file. Name it with a leading underscore.
+@import 'reset';
+
+// VARIABLES $
+$font-stack: Helvetica,
+sans-serif;
+
+// colors
+$primary-color: #333;
+$accent-color: #000;
+$dark-color: #000;
+$light-color: #eaeaea;
+
+.container {
+    max-width: 980px;
+    padding: 0 40px;
+}
+
+body {
+    font: 100% $font-stack;
+    color: $primary-color;
+}
+
+// MIXINS _ can be used for vender prefixes like...
+@mixin transform($property) {
+    -webkit-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
+
+// NESTING
+nav {
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        margin-bottom: 25px;
+
+        li {
+            display: inline-block;
+            text-transform: uppercase;
+            margin-right: 10px;
+            background: $dark-color;
+            padding: 10px;
+            border-radius: 5px;
+            // use mixin here
+            @include transform(rotate(5deg));
+
+            a {
+                text-decoration: none;
+                color: $light-color;
+            }
+        }
+    }
+}
+
+// EXTEND & INHERITANCE
+// create css beginning with % sign so it's not used
+%message-shared {
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: red;
+}
+
+// inherite it using extend
+.main-heading {
+    @extend %message-shared;
+}
+
+// OPERATORS
